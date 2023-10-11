@@ -8,10 +8,10 @@ const scoreText = document.getElementById("scoreText");
 let score = 0;
 setText("Click to Start!");
 
-var isJumping = false;
+let isJumping = false;
 let gameOver = true;
 
-document.addEventListener('mousedown', () => jump());
+document.addEventListener('mousedown', jump);
 
 setInterval(function () { Main()}, 10);
 
@@ -28,17 +28,15 @@ function jump() {
         if(isJumping == false) {
             isJumping = true;
             dino?.classList.add("jump");
-            setTimeout(removeJump, 500);
+            setTimeout(() => {
+                dino?.classList.remove("jump");
+                isJumping = false;
+            }, 500);
         }
     }
     else {
         startGame();
     }   
-}
-
-function removeJump() {
-    dino?.classList.remove("jump");
-    isJumping = false;
 }
 
 function removeObstacles() {
@@ -61,9 +59,6 @@ function checkGameOver() {
         if(dinoTop >= 150 && Math.abs(cactusLeft) < 7) {
             //end game
             endGame();
-
-            //reset player
-            removeJump();
             
             //reset cactus
             removeObstacles();
@@ -73,9 +68,6 @@ function checkGameOver() {
         if(dinoTop <= 55 && Math.abs(birdLeft) < 11) {
             //end game
             endGame();
-
-            //reset player
-            removeJump();
             
             //reset cactus
             removeObstacles();
