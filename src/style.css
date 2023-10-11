@@ -76,7 +76,7 @@
 
 .cactusMove
 {
-  animation: cactusMoveAnimation 2.5s linear infinite;
+  animation: cactusMoveAnimation 2.5s ease-in infinite;
 }
 
 @keyframes cactusMoveAnimation
